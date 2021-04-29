@@ -1,9 +1,13 @@
 <li>
     {{burger_name}}
 
-    <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
-        {{#if devoured}}DEVOUR!{{/if}}
+    <button class="change-devoured" data-id="{{this.id}}" data-newdevoured="{{devoured}}">
+        {{#if this.devoured}}DEVOUR!{{/if}}
     </button>
 
-
+    <form action="/api/burgers/{{this.id}}" method="PUT">
+        <button type="submit" class="change-devoured" data-id="{{this.id}}" data-newdevoured="{{devoured}}">
+            {{#if this.devoured}}DEVOUR!{{/if}}
+        </button>
+    </form>
 </li>

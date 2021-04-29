@@ -1,11 +1,16 @@
 $(function () {
   $(".change-devoured").on("click", function (event) {
+    event.preventDefault();
+
     var id = $(this).data("id");
+    console.log(`id : ${id}`);
     var newDevoured = true;
 
     var newDevourState = {
       devoured: newDevoured
     };
+
+    console.log(newDevoured);
 
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
