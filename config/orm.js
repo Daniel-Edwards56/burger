@@ -1,21 +1,22 @@
-let connection = require("./connection.js");
-function objToSql(ob) {
-  let arr = [];
+const connection = require("./connection.js");
+const objToSql = ob => {
+  const arr = [];
 
   // loop through the keys and push the key/value as a string int arr
   for (let key in ob) {
     let value = ob[key];
     if (Object.hasOwnProperty.call(ob, key)) {
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
+        value = `' ${value} '`;
       }
 
-      arr.push(key + "=" + value);
+      arr.push(`${key}=${value}`);
     }
   }
-}
+  return arr.toString();
+};
 
-let orm = {
+const orm = {
   selectAll: function (tableName, cb) {
     connection.query("select * from ??", [tableName], function (err, result) {
       if (err) throw err;
@@ -23,7 +24,7 @@ let orm = {
     });
   },
   insertOne: function (burger_name, devoured, cb) {
-    let queryString = "INSERT INTO burgers";
+    const queryString = "INSERT INTO burgers";
 
     queryString += " (burger_name, devoured) ";
     queryString += "values(?, ?)";
@@ -38,7 +39,7 @@ let orm = {
   },
   updateOne: function (tableName, eaten, condition, cb) {
     console.log(eaten);
-    let queryString = "UPDATE " + tableName;
+    const queryString = "UPDATE " + tableName;
     queryString += " SET devoured = " + eaten;
     queryString += " WHERE ";
     queryString += condition;
