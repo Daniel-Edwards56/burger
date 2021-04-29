@@ -1,4 +1,4 @@
-const orm = require("../config/orm.js");
+let orm = require("../config/orm.js");
 
 const burger = {
   select: function (cb) {

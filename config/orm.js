@@ -1,5 +1,5 @@
 const connection = require("./connection.js");
-const objToSql = ob => {
+function objToSql(ob) {
   const arr = [];
 
   // loop through the keys and push the key/value as a string int arr
@@ -14,7 +14,7 @@ const objToSql = ob => {
     }
   }
   return arr.toString();
-};
+}
 
 const orm = {
   selectAll: function (tableName, cb) {
